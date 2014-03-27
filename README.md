@@ -19,7 +19,7 @@ El objetivo de “killerbot” es mostrar a través de un proyecto atractivo y e
 Apunta a un público mayoritariamente joven y con gustos por la electrónica y tecnologías computacionales.
 
 ####¿Cómo?
-El proyecto consiste en la fabricación de una estructura móvil controlada por un usuario, la cual pueda moverse libremente y “atacar” a un objetivo.
+El proyecto consiste en la fabricación de una estructura móvil controlada por un usuario a través de comunicación vía Bluetooth o WiFi, la cual pueda moverse libremente y “atacar” a un objetivo.
 
 ####¿Qué hace?
 Se desplaza y realiza movimientos en contra del oponente según se lo ordene el usuario.
