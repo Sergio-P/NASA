@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <View
+        android:id="@+id/stateview"
+        android:layout_width="12dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="#0C0" />
+
+    <TextView
+        android:id="@+id/statetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/stateview"
+        android:layout_toRightOf="@+id/stateview"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="6dp"
+        android:textSize="18sp"
+        android:text="ID: 12:A4:05:45:F3" />
+
+    <Button
+        android:id="@+id/conectbut"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:text="Conectar" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_alignParentLeft="true"
+        android:background="#999"
+        android:layout_below="@+id/conectbut" />
+
+    <Button
+        android:id="@+id/cmdup"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/view1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textSize="42sp"
+        android:text="↑" />
+
+    <Button
+        android:id="@+id/cmdleft"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/cmdup"
+        android:layout_toLeftOf="@+id/cmdup"
+        android:text="←"
+        android:layout_marginTop="-35dp"
+        android:textSize="42sp" />
+    
+    <Button
+        android:id="@+id/cmdRight"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/cmdup"
+        android:layout_toRightOf="@+id/cmdup"
+        android:text="→"
+        android:layout_marginTop="-35dp"
+        android:textSize="42sp" />
+
+    <Button
+        android:id="@+id/cmddown"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/cmdleft"
+        android:layout_toRightOf="@+id/cmdleft"
+        android:text="↓"
+        android:layout_marginTop="-35dp"
+        android:textSize="42sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cmddown"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:textSize="16dp"
+        android:text="Velocidad:" />
+
+    <SeekBar
+        android:id="@+id/spdseek"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_marginTop="-6dp"
+        android:layout_marginLeft="12dp"
+        android:max="8"
+        android:progress="4"
+        android:layout_toRightOf="@+id/textView1" />
+
+    <Button
+        android:id="@+id/cmdatk1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/spdseek"
+        android:layout_marginTop="12dp"
+        android:text="Ataque 1" />
+
+    <Button
+        android:id="@+id/cmdatk2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cmdatk1"
+        android:layout_alignBottom="@+id/cmdatk1"
+        android:layout_toRightOf="@+id/cmdatk1"
+        android:text="Ataque 2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:padding="4dp"
+        android:background="#000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/consoletext"
+            android:layout_width="wrap_content"
+            android:layout_height="36sp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            android:maxLines="3"
+            android:lineSpacingExtra="-3dp"
+            android:typeface="monospace"
+            android:text="Welcome to BotController \nDesarrollado por N.A.S.A, FCFM - 2014 \nConnect to a bot to start" />
+
+    </LinearLayout>
+
+</RelativeLayout>
