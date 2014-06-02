@@ -2,6 +2,8 @@ KillerBot
 ====
 EI2001-11 Taller de Proyecto, FCFM, U de Chile
 
+Vea más detalles del avance en nuestra [wiki](https://github.com/Sergio-P/NASA/wiki)
+
 ###Integrantes
 * Nicole Ahumada
 * Alonso Carpio 
