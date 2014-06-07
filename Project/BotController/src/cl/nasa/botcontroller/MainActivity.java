@@ -107,5 +107,17 @@ public class MainActivity extends Activity {
 		});
 		
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		cmd.startBT();
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		cmd.stopBT();
+	}
 
 }

@@ -19,11 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/stateview"
-        android:layout_toRightOf="@+id/stateview"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="6dp"
-        android:textSize="18sp"
-        android:text="ID: 12:A4:05:45:F3" />
+        android:layout_toRightOf="@+id/stateview"
+        android:text="ID: 12:A4:05:45:F3"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/conectbut"
@@ -39,8 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="2dp"
         android:layout_alignParentLeft="true"
-        android:background="#999"
-        android:layout_below="@+id/conectbut" />
+        android:layout_below="@+id/conectbut"
+        android:layout_marginTop="4dp"
+        android:background="#999" />
 
     <Button
         android:id="@+id/cmdup"
@@ -49,27 +50,27 @@
         android:layout_below="@+id/view1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:textSize="42sp"
-        android:text="↑" />
+        android:text="↑"
+        android:textSize="42sp" />
 
     <Button
         android:id="@+id/cmdleft"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_below="@+id/cmdup"
+        android:layout_marginTop="-35dp"
         android:layout_toLeftOf="@+id/cmdup"
         android:text="←"
-        android:layout_marginTop="-35dp"
         android:textSize="42sp" />
-    
+
     <Button
         android:id="@+id/cmdRight"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_below="@+id/cmdup"
+        android:layout_marginTop="-35dp"
         android:layout_toRightOf="@+id/cmdup"
         android:text="→"
-        android:layout_marginTop="-35dp"
         android:textSize="42sp" />
 
     <Button
@@ -77,9 +78,9 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_below="@+id/cmdleft"
+        android:layout_marginTop="-35dp"
         android:layout_toRightOf="@+id/cmdleft"
         android:text="↓"
-        android:layout_marginTop="-35dp"
         android:textSize="42sp" />
 
     <TextView
@@ -90,8 +91,8 @@
         android:layout_below="@+id/cmddown"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="24dp"
-        android:textSize="16dp"
-        android:text="Velocidad:" />
+        android:text="Velocidad:"
+        android:textSize="16dp" />
 
     <SeekBar
         android:id="@+id/spdseek"
@@ -99,11 +100,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView1"
-        android:layout_marginTop="-6dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="-6dp"
+        android:layout_toRightOf="@+id/textView1"
         android:max="8"
-        android:progress="4"
-        android:layout_toRightOf="@+id/textView1" />
+        android:progress="4" />
 
     <Button
         android:id="@+id/cmdatk1"
@@ -129,22 +130,21 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:padding="4dp"
         android:background="#000"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="4dp" >
 
         <TextView
             android:id="@+id/consoletext"
             android:layout_width="wrap_content"
             android:layout_height="36sp"
             android:layout_marginLeft="4dp"
+            android:lineSpacingExtra="-3dp"
+            android:maxLines="3"
+            android:text="Welcome to BotController \nDesarrollado por N.A.S.A, FCFM - 2014 \nConnect to a bot to start"
             android:textColor="#FFF"
             android:textSize="12sp"
-            android:maxLines="3"
-            android:lineSpacingExtra="-3dp"
-            android:typeface="monospace"
-            android:text="Welcome to BotController \nDesarrollado por N.A.S.A, FCFM - 2014 \nConnect to a bot to start" />
-
+            android:typeface="monospace" />
     </LinearLayout>
 
 </RelativeLayout>
