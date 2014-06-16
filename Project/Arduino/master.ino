@@ -1,10 +1,14 @@
-// Set pins
-int ml1 = 2;
+// Set pins [PWM]
+int ml1 = 5;
 int mr1 = 3;
-int ml2 = 4;
-int mr2 = 5;
+int ml2 = 9;
+int mr2 = 10;
+
+int spd = 192;
 
 char data;
+
+String nums = "012345678";
 
 //Setup
 void setup(){
@@ -12,30 +16,42 @@ void setup(){
 	pinMode(mr1,OUTPUT);
 	pinMode(ml2,OUTPUT);
 	pinMode(mr2,OUTPUT);
-	Serial.begin(9600);
+        Serial.begin(9600);
 }
 
 //Loop
 void loop(){
-	if(Serial.aviable()){
+	if(Serial.available()){
 		data = Serial.read();
 		//Command Functions
-		switch(data){
-		case "1":
-			avance();
-			break;
-		case "2":
-			giroDer();
-			break;
-		case "3":
-			giroIzq();
-			break;
-		case "4":
-			stop();
-			break;
-		default:
-			stop();
-			break;
+		//Speed Command
+		int a = nums.indexOf(data);
+		if(a!=-1){
+			changeSpeed(a);
+		}
+		else{
+			//Other Commands
+			switch(data){
+			case 'U':
+				avance();
+				break;
+			case 'D':
+				retro();
+				break;
+			case 'R':
+				giroDer();
+				break; 
+			case 'L':
+				giroIzq();
+				break;
+			case 'S':
+				stop();
+				break;
+			case 'Z':
+				int sensor = analogRead(0);
+				Serial.write(sensor);
+				break;
+			}
 		}
 	}
 	delay(100);
@@ -43,10 +59,16 @@ void loop(){
 
 //Move Functions
 void avance(){
-	digitalWrite(ml1,1);
+	analogWrite(ml1,spd);
 	digitalWrite(mr1,0);
-	digitalWrite(ml2,1);
+	analogWrite(ml2,spd);
 	digitalWrite(mr2,0);
+}
+void retro(){
+	digitalWrite(ml1,0);
+	analogWrite(mr1,spd);
+	digitalWrite(ml2,0);
+	analogWrite(mr2,spd);
 }
 void stop(){
 	digitalWrite(ml1,0);
@@ -55,14 +77,23 @@ void stop(){
 	digitalWrite(mr2,0);
 }
 void giroDer(){
-	digitalWrite(ml1,1);
+	analogWrite(ml1,spd);
 	digitalWrite(mr1,0);
 	digitalWrite(ml2,0);
-	digitalWrite(mr2,1);
+	analogWrite(mr2,spd);
 }
 void giroIzq(){
 	digitalWrite(ml1,0);
-	digitalWrite(mr1,1);
-	digitalWrite(ml2,1);
+	analogWrite(mr1,spd);
+	analogWrite(ml2,spd);
 	digitalWrite(mr2,0);
+}
+
+void changeSpeed(int vel){
+	if(vel==0){
+		spd = 0;
+	}
+	else{
+		spd = 32*vel -1;
+	}
 }
