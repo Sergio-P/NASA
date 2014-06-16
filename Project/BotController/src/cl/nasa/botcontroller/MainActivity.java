@@ -1,6 +1,8 @@
 package cl.nasa.botcontroller;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,15 +16,36 @@ public class MainActivity extends Activity {
 
 	private Console con;
 	private Commander cmd;
+	private String address="";
+	private Context context;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		context = this;
+		
+		//Retrieve data from last activity
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			address = extras.getString("ad");
+			TextView adt = (TextView) findViewById(R.id.statetext);
+			adt.setText(address);
+			View v = this.findViewById(R.id.stateview);
+			v.setBackgroundColor(Color.rgb(0,200, 0));
+		}
 		
 		//Controllers
 		con = new Console((TextView) this.findViewById(R.id.consoletext));
-		cmd = new Commander(this,con);
+		cmd = new Commander(this,con,address);
+		
+		Button bback = (Button) this.findViewById(R.id.conectbut);
+		bback.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				((Activity) context).onBackPressed();
+			}
+		});
 		
 		//Buttons
 		Button bup = (Button) this.findViewById(R.id.cmdup);
@@ -120,4 +143,10 @@ public class MainActivity extends Activity {
 		cmd.stopBT();
 	}
 
+
+	public void setViewRed(){
+		View v = this.findViewById(R.id.stateview);
+		v.setBackgroundColor(Color.rgb(255, 0, 0));
+	}
+	
 }

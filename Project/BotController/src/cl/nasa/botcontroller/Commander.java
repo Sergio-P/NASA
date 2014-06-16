@@ -1,6 +1,7 @@
 package cl.nasa.botcontroller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
@@ -10,7 +11,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 public class Commander {
 
@@ -21,19 +21,23 @@ public class Commander {
 	private Context context;
 	
 	private static final UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-	private static String address = "20:13:07:15:00:79";
+	private static String address = "";
 	
 	private static final int REQUEST_ENABLE_BT = 1;
 	private BluetoothAdapter btAdapter = null;
 	private BluetoothSocket btSocket = null;
 	private OutputStream outStream = null;
+	private InputStream inStream = null;
 		
-	public Commander(Context cx, Console c){
+	public Commander(Context cx, Console c, String ad){
 		con=c;
 		context=cx;
+		address = ad;
 		
-		btAdapter = BluetoothAdapter.getDefaultAdapter();
-		checkBT();
+		if(ad!=""){
+			btAdapter = BluetoothAdapter.getDefaultAdapter();
+			checkBT();
+		}
 	}
 	
 	private void checkBT() {
@@ -68,17 +72,21 @@ public class Commander {
 			try {
 				btSocket.close();
 				con.print("No se puede conectar al dispositivo");
+				((MainActivity) context).setViewRed();
 			} catch (IOException e1) {
 				con.print("No se puede conectar al dispositivo");
+				((MainActivity) context).setViewRed();
 			}
 		}
 		
 		try {
 			outStream = btSocket.getOutputStream();
+			inStream = btSocket.getInputStream();
 			/*String test = "1";
 			outStream.write(test.getBytes());*/
 		} catch (IOException e) {
 			con.print("No se pueden transmitir datos");
+			((MainActivity) context).setViewRed();
 		}
 		
 	}
@@ -141,13 +149,6 @@ public class Commander {
 	}
 
 	public void sendCommand(Command cmd){	
-		/*String msg="0";
-		if(cmd.equals(Command.DOWN)){
-			msg="1";
-		}
-		else{
-			msg="0";
-		}*/
 		String msg = convertSerial(cmd);
 		
 		byte[] buffer = msg.getBytes();
@@ -155,14 +156,35 @@ public class Commander {
 			outStream.write(buffer);
 			con.print("CMD: "+msg);
 		} catch (IOException e) {
-			con.print("No se pueden enviar datos, revise la direccion MAC");
+			con.print("No se pueden enviar datos");
 		}
+		
+		if(cmd.equals(Command.ATK1)){
+			getData();
+		}
+		
 	}
 	
 	public void sendCommand(Command cmd, int value){
-		con.print("CMD: "+cmd.toString()+" "+String.valueOf(value));
+		String msg = String.valueOf(value);
+		byte[] buffer = msg.getBytes();
+		try {
+			outStream.write(buffer);
+			con.print("CMD: V"+msg);
+		} catch (IOException e) {
+			con.print("No se pueden enviar datos");
+		}	
 	}
 	
-	
+	public int getData(){
+		try {
+			int a = inStream.read();
+			con.print("READ: "+String.valueOf(a));
+			return a;
+		} catch (IOException e) {
+			con.print("No se pueden leer los datos");
+			return -1;
+		}
+	}	
 	
 }
